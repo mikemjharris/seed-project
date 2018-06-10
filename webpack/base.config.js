@@ -1,11 +1,15 @@
+const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-	entry: './src/index.js',
+  entry: {
+		entry: './src/index.js',
+  },
+
 	output: {
 		filename: 'bundle.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, '../dist')
 	},
 
 
@@ -24,6 +28,9 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: "./style.css"
-		})
-	]
+		}),
+    new webpack.EnvironmentPlugin([
+      'NODE_ENV',
+    ]),
+  ],
 };
